@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: white;
+  background-color: rgb(0, 0, 33);
+  font-family: "Poppins", sans-serif;
+}
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  background-color: rgb(18, 18, 62);
+}
+
+.nav-items > ul {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-items > ul > li {
+  list-style: none;
+  margin: 0 23px;
+}
+
+.nav-items > ul > li > a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-items > ul > li > a:hover {
+  color: rgb(125, 97, 247);
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+}
+.card {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgb(70, 70, 141);
+}
+.card > img {
+  width: 100%;
+  border-radius: 10px;
+}
+.card-Names {
+  font-weight: 500;
+}
+.restraunt-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.avgRating {
+  color: rgb(144, 234, 144);
+}
+.cuisines-names {
+  font-size: 12px;
+  color: rgb(205, 186, 186);
+}
