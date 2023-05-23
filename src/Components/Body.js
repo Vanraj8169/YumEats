@@ -1,18 +1,53 @@
 import RestaurantCard from "./RestaurantCard";
-import { restrauntList } from "./config";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import CardSkeleton from "./CardSkeleton";
 
 function filterList(restaurant, searchText) {
   const filteredData = restaurant.filter((res) =>
-    res.data.name.includes(searchText)
+    res.data.name.toLowerCase().includes(searchText.toLowerCase())
   );
   return filteredData;
 }
 
 const Body = () => {
   const [searchText, setsearchText] = useState();
-  const [restaurant, setrestaurant] = useState(restrauntList);
-  return (
+  const [restaurant, setrestaurant] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const data = getRestaurants();
+    // setIsLoading(false);
+  }, []);
+
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/homepage/getCards?lat=19.0759837&lng=72.8776559"
+    );
+    const json = await data.json();
+    setrestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
+  }
+  return restaurant.length === 0 ? (
+    <>
+      <div className="restraunt-list">
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+      </div>
+    </>
+  ) : (
     <>
       <input
         className="search-input"
@@ -26,14 +61,14 @@ const Body = () => {
       <button
         className="search-btn"
         onClick={() => {
-          const filterdData = filterList(restaurant, searchText);
-          setrestaurant(filterdData);
+          const data = filterList(restaurant, searchText);
+          setrestaurant(data);
         }}
       >
         Search
       </button>
       <div className="restraunt-list">
-        {restrauntList.map((restaurant) => {
+        {restaurant.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
           );
